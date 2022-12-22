@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 {
 	static char	*str;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	str = fd_to_str(fd, str); //funcao 2
 	if (!str)

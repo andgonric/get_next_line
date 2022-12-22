@@ -6,7 +6,7 @@
 /*   By: andgonca <andgonca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:27:37 by andgonca          #+#    #+#             */
-/*   Updated: 2022/12/20 22:10:44 by andgonca         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:26:14 by andgonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ char	*ft_get_line(char *str)
 	int		n;
 
 	n = 0;
-	while (str[n] || str[n] != '\n')
+	while (str[n] != '\0' || str[n] != '\n')
 		n++;
 	line = malloc(sizeof(char) * (n + 2));
 	if (!line)
 		return (NULL);
 	n = 0;
-	while (str[n] != '\n' || str[n])
+	while (str[n] != '\n' || str[n] != '\0')
 	{
 		line[n] = str[n];
 		n++;
