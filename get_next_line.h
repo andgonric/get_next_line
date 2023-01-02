@@ -16,11 +16,18 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 50
+# endif
 
 char	*get_next_line(int fd);
-int		ft_strlen(char *str);
+size_t		ft_strlen(char *str);
 int	    ft_strchr(char *str);
 char	*ft_get_line(char *str);
 char	*ft_strjoin(char *buff, char *str);
 char	*fd_to_str(int fd, char *str);
+char	*ft_new_str(char *str);
+
 #endif

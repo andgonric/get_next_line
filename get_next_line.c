@@ -16,20 +16,22 @@
 #include <fcntl.h>
 
 char	*get_next_line(int fd)
-{
+{ 
 	static char	*str;
+	char *line; 
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (NULL);
 	str = fd_to_str(fd, str); //funcao 2
 	if (!str)
 		return (NULL);
-	return (ft_get_line(str)); // funcao 3
-	//str = funcao_4(str);
+	line = ft_get_line(str); // funcao 3
+	str = ft_new_str(str); // funcao 4 elimina a primeira linha e deixa o restante
+	return (line);
 	//size_t read(int fd, void *buf, size_t BUFFER_SIZE)
 }
 
-/*int	main(void)
+int	main(void)
 {
 	char	*line;
 	int		i;
@@ -57,4 +59,4 @@ char	*get_next_line(int fd)
 	close(fd2);
 	close(fd3);
 	return (0);
-}*/
+}

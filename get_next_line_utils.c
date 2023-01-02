@@ -6,15 +6,15 @@
 /*   By: andgonca <andgonca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:27:37 by andgonca          #+#    #+#             */
-/*   Updated: 2022/12/22 21:26:14 by andgonca         ###   ########.fr       */
+/*   Updated: 2022/12/31 12:04:22 by andgonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	int	c;
+	size_t	c;
 
 	c = 0;
 	if (!str)
@@ -46,13 +46,13 @@ char	*ft_get_line(char *str)
 	int		n;
 
 	n = 0;
-	while (str[n] != '\0' || str[n] != '\n')
+	while (str[n] != '\0' && str[n] != '\n')
 		n++;
 	line = malloc(sizeof(char) * (n + 2));
 	if (!line)
 		return (NULL);
 	n = 0;
-	while (str[n] != '\n' || str[n] != '\0')
+	while (str[n] != '\n' && str[n] != '\0')
 	{
 		line[n] = str[n];
 		n++;
@@ -63,7 +63,6 @@ char	*ft_get_line(char *str)
 		n++;
 	}
 	line[n] = '\0';
-	free(str);
 	return (line);
 }
 
@@ -107,7 +106,7 @@ char	*fd_to_str(int fd, char *str)
 	while (!ft_strchr(str) && size != 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
-		if (size == -1)
+		if (size == -1 || !size)
 		{
 			free(buff);
 			return (NULL);
@@ -117,4 +116,33 @@ char	*fd_to_str(int fd, char *str)
 	}
 	free(buff);
 	return (str);
+}
+
+char	*ft_new_str(char *str)
+{
+	char	*new;
+	int		c;
+	int		c1;
+
+	c = 0;
+	c1 = 0;
+	while(str[c] != '\n' && str[c] != '\0')
+		c++;
+	if (str[c] != '\0')
+	{
+		free(str);
+		return (NULL);
+	}
+	new = malloc(sizeof(char) * ((ft_strlen(str) - c) + 1));
+	if (!new)
+		return (NULL);
+	c++;	
+	c1 = 0;
+	while (str[c] != '\0')
+	{
+		new[c1++] = str[c++];
+	}
+	new[c1] = '\0';
+	free (str);
+	return (new);
 }
