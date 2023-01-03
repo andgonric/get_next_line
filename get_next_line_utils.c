@@ -6,7 +6,7 @@
 /*   By: andgonca <andgonca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:27:37 by andgonca          #+#    #+#             */
-/*   Updated: 2022/12/31 12:04:22 by andgonca         ###   ########.fr       */
+/*   Updated: 2023/01/02 22:15:22 by andgonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_strchr(char *str)
 	{
 		if (str[n] == '\n')
 			return (n);
-	n++;	
+	n++;
 	}
 	return (0);
 }
@@ -46,6 +46,8 @@ char	*ft_get_line(char *str)
 	int		n;
 
 	n = 0;
+	if (!str[n])
+		return (NULL);
 	while (str[n] != '\0' && str[n] != '\n')
 		n++;
 	line = malloc(sizeof(char) * (n + 2));
@@ -106,7 +108,7 @@ char	*fd_to_str(int fd, char *str)
 	while (!ft_strchr(str) && size != 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
-		if (size == -1 || !size)
+		if (size == -1)
 		{
 			free(buff);
 			return (NULL);
@@ -126,9 +128,9 @@ char	*ft_new_str(char *str)
 
 	c = 0;
 	c1 = 0;
-	while(str[c] != '\n' && str[c] != '\0')
+	while (str[c] != '\n' && str[c] != '\0')
 		c++;
-	if (str[c] != '\0')
+	if (str[c] == '\0')
 	{
 		free(str);
 		return (NULL);
@@ -136,7 +138,7 @@ char	*ft_new_str(char *str)
 	new = malloc(sizeof(char) * ((ft_strlen(str) - c) + 1));
 	if (!new)
 		return (NULL);
-	c++;	
+	c++;
 	c1 = 0;
 	while (str[c] != '\0')
 	{
