@@ -36,10 +36,10 @@ char	*get_next_line(int fd)
 	int		i;
 	int		fd1;
 	//int		fd2;
-	int		fd3;
-	fd1 = open("textos/texto1.txt", O_RDONLY);
+	//int		fd3;
+	fd1 = open("textos/2", O_RDONLY);
 	//fd2 = open("textos/texto2.txt", O_RDONLY);
-	fd3 = open("textos/texto3.txt", O_RDONLY);
+	//fd3 = open("textos/texto3.txt", O_RDONLY);
 	i = 1;
 	while (i < 7)
 	{
@@ -56,6 +56,6 @@ char	*get_next_line(int fd)
 	}
 	close(fd1);
 	//close(fd2);
-	close(fd3);
+	//close(fd3);
 	return (0);
 }*/

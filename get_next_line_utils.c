@@ -6,7 +6,7 @@
 /*   By: andgonca <andgonca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:27:37 by andgonca          #+#    #+#             */
-/*   Updated: 2023/01/02 22:15:22 by andgonca         ###   ########.fr       */
+/*   Updated: 2023/01/04 00:00:12 by andgonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ char	*ft_new_str(char *str)
 	c1 = 0;
 	while (str[c] != '\n' && str[c] != '\0')
 		c++;
-	if (str[c] == '\0')
+	if (str[c] == '\0' || (str[c] == '\n' && str[c + 1] == '\0'))
 	{
 		free(str);
 		return (NULL);
