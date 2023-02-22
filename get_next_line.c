@@ -15,6 +15,35 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+char	*ft_new_str(char *str)
+{
+	char	*new;
+	int		c;
+	int		c1;
+
+	c = 0;
+	c1 = 0;
+	while (str[c] != '\n' && str[c] != '\0')
+		c++;
+	if (str[c] == '\0' || (str[c] == '\n' && str[c + 1] == '\0'))
+	{
+		free(str);
+		return (NULL);
+	}
+	new = malloc(sizeof(char) * ((ft_strlen(str) - c) + 1));
+	if (!new)
+		return (NULL);
+	c++;
+	c1 = 0;
+	while (str[c] != '\0')
+	{
+		new[c1++] = str[c++];
+	}
+	new[c1] = '\0';
+	free (str);
+	return (new);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*str;
